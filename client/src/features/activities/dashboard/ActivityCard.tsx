@@ -1,31 +1,69 @@
-import { Box, Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/material";
-import { useActivities } from "../../../lib/hooks/useActivities";
+import { AccessTime, Place } from "@mui/icons-material";
+import { Avatar, Box, Button, Card, CardContent, CardHeader, Chip, Divider, Typography } from "@mui/material";
 import { Link } from "react-router";
+import { formatDate } from "../../../lib/util/util";
 
 type Props = {
     activity: Activity;
 }
-export default function ActivityCard({ activity}: Props) {
-    const {deleteActivity} = useActivities();
-  return (
-    <Card sx={{borderRadius: 3}}>
-        <CardContent>
-            <Typography variant="h5">{activity.title} </Typography>
-             <Typography sx={{color: 'text.secondary', mb: 1}}>{activity.date} </Typography>
-              <Typography variant="body2">{activity.description} </Typography>
-               <Typography variant="subtitle1">{activity.city} </Typography>
-        </CardContent>
-        <CardActions sx={{display: 'flex', justifyContent: 'space-between', pb: 2}}>
-            <Chip label={activity.category} variant="outlined"/>
-            <Box display='flex' gap={2}>
-                <Button component={Link} to={`/activities/${activity.id}`} size="medium" variant="contained">View</Button>
-                <Button onClick={() => deleteActivity.mutate(activity.id)} size="medium" color='error' variant="contained" 
-                    disabled={deleteActivity.isPending} 
-                    >Delete</Button>
+export default function ActivityCard({ activity }: Props) {
+    const isHost = false;
+    const isGoing = false;
+    const label = isHost ? 'You are hosting this activity' : 'You are going';
+    const isCancelled = false;
+    const color = isHost ? 'secondary' : isGoing ? 'warning' : 'default';
+
+
+    return (
+        <Card elevation={3} sx={{ borderRadius: 3 }}>
+            <Box display='flex' alignItems='center' justifyContent='space-between' >
+                <CardHeader
+                    avatar={<Avatar sx={{ height: 80, width: 80 }} />}
+                    title={activity.title}
+                    titleTypographyProps={
+                        {
+                            fontWeight: 'bold',
+                            fontSize: 20
+                        }
+                    }
+                    subheader={
+                        <>
+                            Hosted by{' '}<Link to={'/profiles/bob'}>Bob</Link>
+                        </>
+                    }
+                />
+                <Box display='flex' flexDirection='column' gap={2} mr={2}>
+                    {(isHost || isGoing) && <Chip label={label} color={color} sx={{ borderRadius: 2 }} />}
+                    {isCancelled && <Chip label='Cancelled' color='error' sx={{ borderRadius: 2 }} />}
+                </Box>
             </Box>
-            
-        </CardActions>
-         
-    </Card>
-  )
+
+            <Divider sx={{ mb: 3 }} />
+
+            <CardContent sx={{ p: 0 }}>
+                <Box display='flex' alignItems='center' px={2} mb={2}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 0 }}>
+                        <AccessTime sx={{ mr: 1 }} />
+                        <Typography noWrap variant="body2">{formatDate(activity.date)}  </Typography>
+                    </Box>                   
+                    <Place sx={{ ml: 3, mr: 1 }} />
+                    <Typography variant='body2'>{activity.venue}</Typography>
+                </Box>
+                <Divider />
+                <Box display='flex' gap={2} sx={{ backgroundColor: 'grey.200', py: 3, pl: 3 }}>
+                    Attendees go here
+                </Box>
+
+            </CardContent>
+            <CardContent sx={{ pb: 2 }}>
+                <Typography>{activity.description}</Typography>
+                <Button component={Link} to={`/activities/${activity.id}`} size="medium" variant="contained"
+                    sx={{ display: 'flex', justifySelf: 'self-end', borderRadius: 3 }}
+                >View</Button>
+
+
+            </CardContent>
+
+        </Card>
+    )
 }
