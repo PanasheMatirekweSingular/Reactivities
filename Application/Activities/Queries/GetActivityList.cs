@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Activites.Queries;
+namespace Application.Activities.Queries;
 
 public class GetActivityList
 {
