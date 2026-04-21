@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@mui/x-date-pickers": "^9.0.2",
+    "date-fns": "^4.1.0",
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.21"
+  }
+}
