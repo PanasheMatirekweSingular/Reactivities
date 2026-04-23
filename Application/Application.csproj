@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Activities\Commands\" />
+    <Folder Include="Profiles\" />
+    <Folder Include="Profiles\DTOs\" />
   </ItemGroup>
 
 </Project>
