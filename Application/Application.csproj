@@ -18,9 +18,15 @@
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
+   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Profiles\" />
+    <Folder Include="Profiles\Commands\" />
     <Folder Include="Profiles\DTOs\" />
+    <Folder Include="Profiles\Queries\" />
   </ItemGroup>
 
 </Project>
