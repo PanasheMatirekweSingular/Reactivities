@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@microsoft/signalr": "^10.0.0",
     "@mui/x-date-pickers": "^9.0.2",
     "date-fns": "^4.1.0",
     "leaflet": "^1.9.4",
