@@ -14,7 +14,7 @@ type Activity = {
     isHost: boolean
     hostId: string
     hostDisplayName: string
-    hostImageUrl: string
+    hostImageUrl?: string
 }
 
 type Profile = {
@@ -77,4 +77,9 @@ type LocationIQAddress = {
   postcode?: string
   country: string
   country_code: string
+}
+
+type PagedList<T, TCursor> ={
+  items: T[],
+  nextCursor: TCursor
 }
