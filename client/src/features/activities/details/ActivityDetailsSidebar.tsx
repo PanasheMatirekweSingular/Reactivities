@@ -5,7 +5,7 @@ type Props = {
 }
 
 export default function ActivityDetailsSidebar({ activity }: Props) {
-    const following = true;
+
     return (
         <>
             <Paper
@@ -18,7 +18,7 @@ export default function ActivityDetailsSidebar({ activity }: Props) {
                 }}
             >
                 <Typography variant="h6">
-                    {activity.attendees.length} people going
+                    {activity.attendees.length}
                 </Typography>
             </Paper>
             <Paper sx={{ padding: 2 }}>
@@ -37,7 +37,7 @@ export default function ActivityDetailsSidebar({ activity }: Props) {
                                     </ListItemAvatar>
                                     <ListItemText>
                                         <Typography variant="h6">{attendee.displayName}</Typography>
-                                        {following && (
+                                        {attendee.following && (
                                 <Typography variant="body2" color="orange">
                                     Following
                                 </Typography>
